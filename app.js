@@ -1,3 +1,4 @@
+window.addEventListener('load',()=>{let s=document.createElement('script');s.src='session.js';document.body.appendChild(s)});
 
 const key='le-carnet-maths-v3';
 const program5e=[['Nombres et calculs','Nombres décimaux, opérations, fractions, relatifs, puissances, calcul littéral'],['Espace et géométrie','Repérage, espace, transformations, angles, triangles, parallélogrammes'],['Données et probabilités','Statistiques et probabilités'],['Proportionnalité et fonctions','Proportionnalité, pourcentages et fonctions'],['Pensée informatique','Algorithmique et programmation']];
