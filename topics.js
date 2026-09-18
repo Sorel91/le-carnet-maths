@@ -1,4 +1,4 @@
-window.addEventListener('load', () => {
+(() => {
   const style = document.createElement('style');
   style.textContent = '.topics-field{display:grid;gap:9px}.topics-head{display:flex;justify-content:space-between;align-items:center}.topics-head label{font-size:.84rem;font-weight:700;color:var(--muted)}#topic-rows{display:grid;gap:8px}.topic-row{display:grid;grid-template-columns:minmax(0,1fr) 145px 34px;gap:8px;align-items:center}.remove-topic{border:0;background:#f9e3de;color:#8a3325;border-radius:8px;height:40px;font-size:1.2rem;cursor:pointer}.record-item p{white-space:pre-line}@media(max-width:560px){.topic-row{grid-template-columns:1fr 1fr 34px}.topics-head{align-items:flex-start;flex-direction:column}}';
   document.head.appendChild(style);
@@ -32,4 +32,4 @@ window.addEventListener('load', () => {
     student.records.push({ title: session.title, date: session.date, status: `${topics.length} thématique${topics.length > 1 ? 's' : ''}`, note: topics.map(x => `${x.topic} — ${x.status}`).join('\n'), next: values.next, topics });
     student.next = values.next; save(); $('#note-dialog').close(); students(); today(); toast('Suivi par thématiques ajouté.');
   };
-});
+})();
