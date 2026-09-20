@@ -1,48 +1,15 @@
 <!doctype html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Carnet de conduite de séances de mathématiques.">
-  <title>Le Carnet — cours de maths</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="shell">
-    <aside class="sidebar">
-      <a class="brand" href="#today"><span>∑</span> Le Carnet</a>
-      <p>Le tableau de bord de tes cours.</p>
-      <nav>
-        <button class="nav active" data-view="today">Aujourd’hui</button>
-        <button class="nav" data-view="students">Élèves</button>
-        <button class="nav" data-view="resources">Banque d’exercices</button>
-        <button class="nav" data-view="history">Historique</button>
-      </nav>
-      <div class="side-foot"><button id="export-data" class="link-button">Exporter les données</button><br><small>Les données restent sur cet appareil.</small></div>
-    </aside>
-    <main>
-      <header><div><p class="eyebrow" id="date-label"></p><h1 id="page-title">Conduire la séance</h1></div><button id="new-session" class="primary">+ Nouvelle séance</button></header>
-      <section id="today-view" class="view active">
-        <section class="session-bar">
-          <div><label>Séance ouverte<select id="session-picker"></select></label><button id="edit-session" class="quiet">Modifier</button></div>
-          <div class="session-state"><strong id="session-name"></strong><span id="session-goal"></span></div>
-          <div><button id="start-session" class="primary">Démarrer</button></div>
-        </section>
-        <section class="ritual-card">
-          <div><p class="eyebrow">Moment commun · facultatif</p><h2>Rituel de calcul</h2><p id="ritual-note">Choisis une phase et lance son temps.</p></div>
-          <div class="timer"><strong id="timer">10:00</strong><button id="timer-start" class="primary">Lancer</button><button id="timer-reset" class="quiet">Réinitialiser</button></div>
-          <div class="phase-buttons"><button data-time="600">Rituel · 10 min</button><button data-time="900">Défi partagé · 15 min</button><button data-time="3300">Travail individuel · 55 min</button><button data-time="600">Bilan · 10 min</button></div>
-        </section>
-        <section class="workbench-heading"><div><p class="eyebrow">Pendant le cours</p><h2>Choisis un élève, puis note ce qui se passe.</h2></div><p>Tout est enregistré dans la séance en cours.</p></section>
-        <div class="workbench"><aside id="student-tabs" class="student-tabs"></aside><section id="student-workbench" class="student-workbench"></section></div>
-      </section>
-      <section id="students-view" class="view"><div id="students-page"></div></section>
-      <section id="resources-view" class="view"><div id="resources-page"></div></section>
-      <section id="history-view" class="view"><div id="history-page"></div></section>
-    </main>
-  </div>
-  <dialog id="session-dialog"><form id="session-form"><div class="modal-title"><h2>Préparer une séance</h2><button type="button" data-close>×</button></div><label>Nom de la séance<input required name="title" placeholder="Ex. Mercredi 25 septembre"></label><div class="two-cols"><label>Date<input required type="date" name="date"></label><label>Durée<select name="duration"><option>1 h 30</option><option>1 h</option><option>2 h</option></select></label></div><label>Intention de séance<textarea name="goal" rows="2" placeholder="Ex. Consolider les fractions et observer les stratégies."></textarea></label><div class="actions"><button type="button" data-close class="quiet">Annuler</button><button class="primary">Enregistrer la séance</button></div></form></dialog>
-  <div id="toast" role="status"></div>
-  <script src="app.js"></script>
-</body>
-</html>
+<html lang="fr"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Carnet de conduite de séances de mathématiques."><title>Le Carnet — cours de maths</title><link rel="stylesheet" href="style.css">
+<style>.session-ready{background:#dcefe9;color:#183a35;border-radius:9px;padding:10px 14px;font-weight:700;font-size:.9rem}.note-help{margin:-4px 0 14px;color:#65736f;font-size:.9rem}.note-box label:has(textarea),.note-box label:has(input){margin-top:10px}</style>
+</head><body><div class="shell">
+<aside class="sidebar"><a class="brand" href="#today"><span>∑</span> Le Carnet</a><p>Le tableau de bord de tes cours.</p><nav><button class="nav active" data-view="today">Aujourd’hui</button><button class="nav" data-view="students">Élèves</button><button class="nav" data-view="resources">Banque d’exercices</button><button class="nav" data-view="history">Historique</button></nav><div class="side-foot"><button id="export-data" class="link-button">Exporter les données</button><br><small>Les données restent sur cet appareil.</small></div></aside>
+<main><header><div><p class="eyebrow" id="date-label"></p><h1 id="page-title">Conduire la séance</h1></div><button id="new-session" class="primary">+ Nouvelle séance</button></header>
+<section id="today-view" class="view active"><section class="session-bar"><div><label>Séance ouverte<select id="session-picker"></select></label><button id="edit-session" class="quiet">Modifier</button></div><div class="session-state"><strong id="session-name"></strong><span id="session-goal"></span></div><div><button id="start-session" class="primary" hidden>Démarrer</button></div></section>
+<section class="ritual-card"><div><p class="eyebrow">Moment commun · facultatif</p><h2>Rituel de calcul</h2><p id="ritual-note">Choisis une phase et lance son temps.</p></div><div class="timer"><strong id="timer">10:00</strong><button id="timer-start" class="primary">Lancer</button><button id="timer-reset" class="quiet">Réinitialiser</button></div><div class="phase-buttons"><button data-time="600">Rituel · 10 min</button><button data-time="900">Défi partagé · 15 min</button><button data-time="3300">Travail individuel · 55 min</button><button data-time="600">Bilan · 10 min</button></div></section>
+<section class="workbench-heading"><div><p class="eyebrow">Pendant le cours</p><h2>Un élève à la fois, une trace utile.</h2></div><p>Choisis l’élève, observe, puis enregistre son point de séance.</p></section><div class="workbench"><aside id="student-tabs" class="student-tabs"></aside><section id="student-workbench" class="student-workbench"></section></div></section>
+<section id="students-view" class="view"><div id="students-page"></div></section><section id="resources-view" class="view"><div id="resources-page"></div></section><section id="history-view" class="view"><div id="history-page"></div></section></main></div>
+<dialog id="session-dialog"><form id="session-form"><div class="modal-title"><h2>Préparer une séance</h2><button type="button" data-close>×</button></div><label>Nom de la séance<input required name="title" placeholder="Ex. Mercredi 25 septembre"></label><div class="two-cols"><label>Date<input required type="date" name="date"></label><label>Durée<select name="duration"><option>1 h 30</option><option>1 h</option><option>2 h</option></select></label></div><label>Intention de séance<textarea name="goal" rows="2" placeholder="Ex. Consolider les fractions et observer les stratégies."></textarea></label><div class="actions"><button type="button" data-close class="quiet">Annuler</button><button class="primary">Enregistrer la séance</button></div></form></dialog><div id="toast" role="status"></div>
+<script src="app.js"></script><script>(()=>{const enhance=()=>{let start=document.querySelector('#start-session');if(start){start.hidden=true;if(!document.querySelector('#session-ready')){let x=document.createElement('div');x.id='session-ready';x.className='session-ready';x.textContent='Séance ouverte : passe directement au suivi des élèves.';start.parentElement.append(x)}}let box=document.querySelector('.note-box');if(!box)return;let title=box.querySelector('h3');if(title&&title.textContent!=='Point de séance : noter l’essentiel')title.textContent='Point de séance : noter l’essentiel';if(!box.querySelector('.note-help')){let p=document.createElement('p');p.className='note-help';p.textContent='En quelques mots : ce qui a été fait, ce qui a réussi ou bloqué, puis la prochaine action.';title.after(p)};let exo=document.querySelector('#exo'),note=document.querySelector('#note'),next=document.querySelector('#next'),save=document.querySelector('#save-rec');if(exo)exo.placeholder='Ex. exercices 1 à 4, fiche fractions';if(note)note.placeholder='Réussite, blocage observé, ou stratégie employée.';if(next)next.placeholder='Ex. reprendre la simplification des fractions';if(save&&save.textContent!=='Enregistrer le point de séance')save.textContent='Enregistrer le point de séance'};new MutationObserver(enhance).observe(document.body,{childList:true,subtree:true});enhance()})();</script>
+</body></html>
